@@ -1,0 +1,253 @@
+/* Shared, low-opacity animated background layers for Software/Electrical pages. */
+
+.page-wrapper {
+  position: relative;
+  overflow: hidden;
+}
+
+.page-background {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.page-content {
+  position: relative;
+  z-index: 1;
+}
+
+.engineering-grid {
+  position: absolute;
+  inset: 0;
+  background-size: 64px 64px;
+  animation: grid-drift 100s linear infinite;
+}
+
+.bg-radial {
+  position: absolute;
+  inset: 0;
+}
+
+.bg-corner {
+  position: absolute;
+  width: 240px;
+  height: 240px;
+  overflow: visible;
+}
+
+.bg-corner--top-left {
+  top: -30px;
+  left: -30px;
+}
+
+.bg-corner--top-right {
+  top: -30px;
+  right: -30px;
+  transform: scaleX(-1);
+}
+
+.bg-corner--bottom-left {
+  bottom: -30px;
+  left: -30px;
+  transform: scaleY(-1);
+}
+
+.bg-corner--bottom-right {
+  bottom: -30px;
+  right: -30px;
+  transform: scale(-1, -1);
+}
+
+/* Network (software) elements: curved data lines + breathing round nodes */
+
+.network-lines path {
+  opacity: 0.08;
+  animation: line-fade 11s ease-in-out infinite;
+}
+
+.network-node-group circle {
+  opacity: 0.18;
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: node-pulse 8s ease-in-out infinite;
+}
+
+.network-pulse {
+  opacity: 0.42;
+}
+
+.network-pulse--packet {
+  opacity: 0.32;
+}
+
+/* Circuit (electrical) elements: right-angle traces + glowing square nodes */
+
+.circuit-paths path {
+  opacity: 0.1;
+  animation: line-fade 12s ease-in-out infinite;
+}
+
+.circuit-node-group rect {
+  opacity: 0.2;
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: node-drift 16s ease-in-out infinite;
+  filter: drop-shadow(0 0 2px currentColor);
+}
+
+.circuit-component {
+  opacity: 0.14;
+}
+
+.circuit-waveform path {
+  opacity: 0.12;
+  stroke-dasharray: 6 5;
+  animation: dash-flow 6s linear infinite;
+}
+
+.circuit-pulse {
+  opacity: 0.45;
+}
+
+@keyframes grid-drift {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 120px 90px;
+  }
+}
+
+@keyframes line-fade {
+  0%, 100% {
+    opacity: 0.05;
+  }
+  50% {
+    opacity: 0.16;
+  }
+}
+
+@keyframes node-pulse {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(2px, -3px) scale(1.2);
+  }
+}
+
+@keyframes node-drift {
+  0%, 100% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(3px, -2px);
+  }
+}
+
+@keyframes dash-flow {
+  to {
+    stroke-dashoffset: -66;
+  }
+}
+
+/* Tablet: reduce density */
+@media (max-width: 1024px) {
+  .bg-corner {
+    width: 170px;
+    height: 170px;
+  }
+
+  .hide-tablet-down {
+    display: none;
+  }
+}
+
+/* Mobile: dramatically simplify, not just scale down */
+@media (max-width: 640px) {
+  .engineering-grid {
+    background-size: 96px 96px;
+    opacity: 0.6;
+  }
+
+  .bg-corner {
+    width: 120px;
+    height: 120px;
+  }
+
+  .hide-mobile {
+    display: none;
+  }
+
+  .network-lines path,
+  .circuit-paths path,
+  .circuit-waveform path {
+    opacity: 0.05 !important;
+    animation-duration: 22s;
+  }
+
+  .data-flow-line,
+  .power-line-waveform {
+    opacity: 0.35;
+  }
+
+  .network-node-group circle,
+  .circuit-node-group rect {
+    opacity: 0.12 !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .engineering-grid,
+  .network-lines path,
+  .network-node-group circle,
+  .network-pulse,
+  .circuit-paths path,
+  .circuit-node-group rect,
+  .circuit-waveform path,
+  .circuit-pulse,
+  .data-flow-line circle,
+  .power-line-waveform circle {
+    animation: none !important;
+  }
+}
+
+/* Software: thin edge line with slow-traveling data particles */
+.data-flow-line {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 40px;
+  opacity: 0.6;
+}
+
+.data-flow-line line {
+  opacity: 0.08;
+}
+
+.data-flow-line circle {
+  opacity: 0.35;
+}
+
+/* Electrical: full-width power waveform strip along the bottom edge */
+.power-line-waveform {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 60px;
+  opacity: 0.6;
+}
+
+.power-line-waveform path {
+  opacity: 0.08;
+  stroke-dasharray: 6 5;
+  animation: dash-flow 8s linear infinite;
+}
+
+.power-line-waveform circle {
+  opacity: 0.4;
+}
