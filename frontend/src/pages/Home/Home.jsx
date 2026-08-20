@@ -1,4 +1,17 @@
-import { Cpu, Lightbulb, ShieldCheck, Zap } from 'lucide-react'
+import {
+  ArrowRight,
+  Code2,
+  Cpu,
+  Palette,
+  Rocket,
+  Search,
+  ShieldCheck,
+  Sparkles,
+  Target,
+  Users,
+  Wrench,
+  Zap,
+} from 'lucide-react'
 import { Container } from '../../components/common/Container'
 import { Button } from '../../components/common/Button'
 import { SectionHeading } from '../../components/common/SectionHeading'
@@ -13,15 +26,15 @@ const EngineeringScene = lazy(() =>
   })),
 )
 
-const process = [
-  'Discover',
-  'Research',
-  'Planning',
-  'UI/UX Designing',
-  'Development',
-  'Testing',
-  'Deploying',
-  'Support / Maintenance',
+const processMeta = [
+  { icon: Users, gradient: 'grad-blue' },
+  { icon: Search, gradient: 'grad-cyan' },
+  { icon: Target, gradient: 'grad-purple' },
+  { icon: Palette, gradient: 'grad-pink' },
+  { icon: Code2, gradient: 'grad-indigo' },
+  { icon: ShieldCheck, gradient: 'grad-green' },
+  { icon: Rocket, gradient: 'grad-cyan2' },
+  { icon: Wrench, gradient: 'grad-violet' },
 ]
 
 export function Home() {
@@ -36,12 +49,12 @@ export function Home() {
             <h1>{t.home.heroTitle}</h1>
             <p>{t.home.heroText}</p>
             <div className="hero-actions">
-              <Button to="/software">Explore Software</Button>
+              <Button to="/software">{t.home.exploreSoftware}</Button>
               <Button to="/electrical" variant="secondary">
-                Explore Electrical
+                {t.home.exploreElectrical}
               </Button>
               <Button to="/service-request" variant="ghost">
-                Start a Project
+                {t.home.startProject}
               </Button>
             </div>
           </motion.div>
@@ -60,24 +73,24 @@ export function Home() {
       <section className="section">
         <Container>
           <SectionHeading
-            eyebrow="Two divisions"
-            title="Software, electrical engineering and automation under one reliable system."
+            eyebrow={t.home.divisionsEyebrow}
+            title={t.home.divisionsTitle}
           />
           <div className="card-grid two">
             <article className="feature-card">
               <Cpu />
-              <h3>Software & Technology</h3>
-              <p>Web, mobile, custom software, AI automation, cloud systems and digital transformation.</p>
+              <h3>{t.home.softwareCardTitle}</h3>
+              <p>{t.home.softwareCardText}</p>
               <Button to="/software" variant="secondary">
-                Explore Software
+                {t.home.exploreSoftware}
               </Button>
             </article>
             <article className="feature-card">
               <Zap />
-              <h3>Electrical Services</h3>
-              <p>Residential, commercial, hospitality, solar, EV charging, installation and maintenance.</p>
+              <h3>{t.home.electricalCardTitle}</h3>
+              <p>{t.home.electricalCardText}</p>
               <Button to="/electrical" variant="secondary">
-                Explore Electrical
+                {t.home.exploreElectrical}
               </Button>
             </article>
           </div>
@@ -87,16 +100,16 @@ export function Home() {
       <section className="section alt-section">
         <Container>
           <SectionHeading
-            eyebrow="AI & Automation"
-            title="AI & Automation for the Next Generation of Business"
-            text="Intelligent workflows, AI integration and project rescue for practical business outcomes."
+            eyebrow={t.home.aiEyebrow}
+            title={t.home.aiTitle}
+            text={t.home.aiText}
           />
           <div className="card-grid">
-            {['Engineering Excellence', 'Reliable Solutions', 'Modern Innovation', 'Long-Term Support'].map((item) => (
+            {t.home.aiCards.map((item) => (
               <article className="mini-card" key={item}>
                 <ShieldCheck />
                 <h3>{item}</h3>
-                <p>Clear, scalable delivery with careful engineering judgment.</p>
+                <p>{t.home.aiCardText}</p>
               </article>
             ))}
           </div>
@@ -105,24 +118,46 @@ export function Home() {
 
       <section className="section">
         <Container>
-          <SectionHeading eyebrow="Process" title="A disciplined delivery path from idea to support." />
+          <div className="process-heading">
+            <span className="ai-pill"><Wrench size={14} /> {t.home.howWeWork}</span>
+            <h2>{t.home.processTitle}</h2>
+            <p>{t.home.processText}</p>
+          </div>
           <ol className="process-list">
-            {process.map((step, index) => (
-              <li key={step}>
-                <span>{String(index + 1).padStart(2, '0')}</span>
-                {step}
-              </li>
-            ))}
+            {t.home.process.map((step, index) => {
+              const meta = processMeta[index]
+              return (
+                <li key={step.title}>
+                  <div className="process-icon-wrap">
+                    <span className={`process-icon ${meta.gradient}`}>
+                      <meta.icon size={20} />
+                    </span>
+                    <span className="process-step-number">{index + 1}</span>
+                  </div>
+                  <h3>{step.title}</h3>
+                  <p>{step.text}</p>
+                </li>
+              )
+            })}
           </ol>
         </Container>
       </section>
 
       <section className="final-cta">
         <Container>
-          <Lightbulb />
-          <h2>Have a project in mind?</h2>
-          <p>Let's build a reliable solution together.</p>
-          <Button to="/contact">Contact Us</Button>
+          <span className="ai-pill"><Sparkles size={14} /> {t.home.ctaPill}</span>
+          <h2>
+            {t.home.ctaTitleLine1}
+            <br />
+            <span className="gradient-text">{t.home.ctaTitleGradient}</span>
+          </h2>
+          <p>{t.home.ctaText}</p>
+          <div className="hero-actions centered-actions">
+            <Button to="/contact"><Sparkles size={16} /> {t.home.ctaPrimary}</Button>
+            <Button to="/service-request" variant="ghost">
+              {t.home.ctaSecondary} <ArrowRight size={16} />
+            </Button>
+          </div>
         </Container>
       </section>
     </main>

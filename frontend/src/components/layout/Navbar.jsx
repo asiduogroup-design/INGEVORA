@@ -40,7 +40,7 @@ export function Navbar() {
         {isAuthenticated ? (
           <>
             <NavLink className="login-link" to="/profile">{nav.profile}</NavLink>
-            <button className="language-button" type="button" onClick={logout}>Logout</button>
+            <button className="logout-button" type="button" onClick={logout}>Logout</button>
           </>
         ) : (
           <NavLink className="login-link" to="/login">{nav.login}</NavLink>
@@ -66,7 +66,7 @@ export function Navbar() {
             {nav.language}
           </button>
           {isAuthenticated ? (
-            <button type="button" onClick={() => { logout(); setOpen(false) }}>Logout</button>
+            <button className="logout-button" type="button" onClick={() => { logout(); setOpen(false) }}>Logout</button>
           ) : (
             <NavLink to="/login" onClick={() => setOpen(false)}>{nav.login}</NavLink>
           )}

@@ -1,7 +1,11 @@
+import { useLanguage } from '../../hooks/useLanguage'
+
 export function MyRequests() {
+  const { t } = useLanguage()
+
   return (
     <main className="page auth-page">
-      <h1>My Requests</h1>
+      <h1>{t.myRequests.title}</h1>
     </main>
   )
 }

@@ -1,0 +1,15 @@
+export default {
+  title: 'Contact INGEVORA',
+  text: 'Use the contact form to discuss software, AI, electrical or automation work.',
+  name: 'Name *',
+  email: 'Email *',
+  phone: 'Phone',
+  company: 'Company',
+  serviceType: 'Service Type *',
+  serviceTypeOptions: ['Software', 'Electrical', 'AI', 'Website', 'Mobile App', 'Solar', 'EV Charging', 'Maintenance', 'Other'],
+  budget: 'Budget',
+  preferredContact: 'Preferred Contact Method',
+  contactMethods: ['Email', 'Phone'],
+  projectDescription: 'Project Description *',
+  sendMessage: 'Send Message',
+}

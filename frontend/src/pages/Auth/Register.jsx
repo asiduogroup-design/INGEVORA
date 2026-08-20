@@ -1,9 +1,11 @@
 import { Link, useNavigate } from 'react-router-dom'
 import { useAuth } from '../../hooks/useAuth'
+import { useLanguage } from '../../hooks/useLanguage'
 
 export function Register() {
   const navigate = useNavigate()
   const { login } = useAuth()
+  const { t } = useLanguage()
 
   function handleSubmit(event) {
     event.preventDefault()
@@ -14,16 +16,16 @@ export function Register() {
 
   return (
     <main className="page auth-page">
-      <h1>Register</h1>
+      <h1>{t.auth.registerTitle}</h1>
       <form className="auth-form" onSubmit={handleSubmit}>
-        <label>Name<input required name="name" /></label>
-        <label>Email<input required type="email" name="email" /></label>
-        <label>Phone<input name="phone" /></label>
-        <label>Company<input name="company" /></label>
-        <label>Password<input required type="password" name="password" /></label>
-        <label>Confirm Password<input required type="password" name="confirmPassword" /></label>
-        <button className="btn btn-primary" type="submit">Create Account</button>
-        <p>Already have an account? <Link to="/login">Login</Link></p>
+        <label>{t.auth.name}<input required name="name" /></label>
+        <label>{t.auth.email}<input required type="email" name="email" /></label>
+        <label>{t.auth.phone}<input name="phone" /></label>
+        <label>{t.auth.company}<input name="company" /></label>
+        <label>{t.auth.password}<input required type="password" name="password" /></label>
+        <label>{t.auth.confirmPassword}<input required type="password" name="confirmPassword" /></label>
+        <button className="btn btn-primary" type="submit">{t.auth.createAccountButton}</button>
+        <p>{t.auth.alreadyHaveAccount} <Link to="/login">{t.auth.loginLink}</Link></p>
       </form>
     </main>
   )

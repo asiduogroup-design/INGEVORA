@@ -1,6 +1,15 @@
 import { Canvas, useFrame } from '@react-three/fiber'
-import { Float, Line, Sphere } from '@react-three/drei'
+import { Float, Html, Line, Sphere } from '@react-three/drei'
 import { Suspense, useRef } from 'react'
+import './EngineeringScene.css'
+
+// Maps node index -> tagline word, so "Software • Engineering • Automation"
+// rides along the three most spread-out connection points.
+const NODE_LABELS = {
+  0: 'Software',
+  1: 'Engineering',
+  2: 'Automation',
+}
 
 function Core() {
   const group = useRef()
@@ -27,6 +36,13 @@ function Core() {
       {nodes.map((point, index) => (
         <Sphere key={point.join('-')} args={[0.075, 16, 16]} position={point}>
           <meshStandardMaterial color={index % 2 ? '#16845b' : '#1597f5'} emissive="#06365f" />
+          {NODE_LABELS[index] && (
+            <Html center wrapperClass="scene-label-wrapper">
+              <span className="scene-label" style={{ animationDelay: `${index * 0.25}s` }}>
+                {NODE_LABELS[index]}
+              </span>
+            </Html>
+          )}
         </Sphere>
       ))}
       <Line points={nodes} color="#1597f5" lineWidth={1.4} transparent opacity={0.8} />

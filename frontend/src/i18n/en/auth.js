@@ -1,0 +1,16 @@
+export default {
+  loginTitle: 'Login',
+  registerTitle: 'Register',
+  name: 'Name',
+  email: 'Email',
+  phone: 'Phone',
+  company: 'Company',
+  password: 'Password',
+  confirmPassword: 'Confirm Password',
+  loginButton: 'Login',
+  createAccountButton: 'Create Account',
+  newToIngevora: 'New to INGEVORA?',
+  createAnAccount: 'Create an account',
+  alreadyHaveAccount: 'Already have an account?',
+  loginLink: 'Login',
+}

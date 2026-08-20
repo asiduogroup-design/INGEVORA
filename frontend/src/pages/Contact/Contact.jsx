@@ -1,37 +1,38 @@
 import { Container } from '../../components/common/Container'
 import { SectionHeading } from '../../components/common/SectionHeading'
 import { Send } from 'lucide-react'
+import { useLanguage } from '../../hooks/useLanguage'
 
 export function Contact() {
+  const { t } = useLanguage()
+
   return (
     <main className="page">
       <Container>
         <SectionHeading
-          title="Contact INGEVORA"
-          text="Use the contact form to discuss software, AI, electrical or automation work."
+          title={t.contact.title}
+          text={t.contact.text}
         />
         <form className="form-grid">
-          <label>Name *<input required name="name" /></label>
-          <label>Email *<input required type="email" name="email" /></label>
-          <label>Phone<input name="phone" /></label>
-          <label>Company<input name="company" /></label>
-          <label>Service Type *
+          <label>{t.contact.name}<input required name="name" /></label>
+          <label>{t.contact.email}<input required type="email" name="email" /></label>
+          <label>{t.contact.phone}<input name="phone" /></label>
+          <label>{t.contact.company}<input name="company" /></label>
+          <label>{t.contact.serviceType}
             <select required name="serviceType">
-              <option>Software</option>
-              <option>Electrical</option>
-              <option>AI</option>
-              <option>Website</option>
-              <option>Mobile App</option>
-              <option>Solar</option>
-              <option>EV Charging</option>
-              <option>Maintenance</option>
-              <option>Other</option>
+              {t.contact.serviceTypeOptions.map((option) => (
+                <option key={option}>{option}</option>
+              ))}
             </select>
           </label>
-          <label>Budget<input name="budget" /></label>
-          <label>Preferred Contact Method<select name="preferredContact"><option>Email</option><option>Phone</option></select></label>
-          <label className="full">Project Description *<textarea required name="projectDescription" rows="6" /></label>
-          <button className="btn btn-primary" type="submit"><Send size={18} /> Send Message</button>
+          <label>{t.contact.budget}<input name="budget" /></label>
+          <label>{t.contact.preferredContact}<select name="preferredContact">
+            {t.contact.contactMethods.map((method) => (
+              <option key={method}>{method}</option>
+            ))}
+          </select></label>
+          <label className="full">{t.contact.projectDescription}<textarea required name="projectDescription" rows="6" /></label>
+          <button className="btn btn-primary" type="submit"><Send size={18} /> {t.contact.sendMessage}</button>
         </form>
       </Container>
     </main>

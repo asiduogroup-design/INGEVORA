@@ -3,16 +3,19 @@ import { SectionHeading } from '../../components/common/SectionHeading'
 import { ServiceGrid } from '../../components/services/ServiceGrid'
 import { SoftwareBackground } from '../../components/backgrounds/SoftwareBackground'
 import { softwareServices } from '../../data/services'
+import { useLanguage } from '../../hooks/useLanguage'
 
 export function Software() {
+  const { t } = useLanguage()
+
   return (
     <main className="page page-wrapper">
       <SoftwareBackground />
       <Container className="page-content">
         <SectionHeading
-          eyebrow="Software & Technology"
-          title="Build. Automate. Transform."
-          text="Custom web, mobile, AI, automation and cloud solutions focused on reliability and business value."
+          eyebrow={t.software.eyebrow}
+          title={t.software.title}
+          text={t.software.text}
         />
         <ServiceGrid services={softwareServices} type="software" />
       </Container>

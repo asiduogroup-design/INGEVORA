@@ -1,23 +1,26 @@
 import { Container } from '../../components/common/Container'
 import { SectionHeading } from '../../components/common/SectionHeading'
 import { Button } from '../../components/common/Button'
+import { useLanguage } from '../../hooks/useLanguage'
 
 export function Pricing() {
+  const { t } = useLanguage()
+
   return (
     <main className="page">
       <Container>
-        <SectionHeading title="Pricing" text="Pricing is available for logged-in users so requests can be matched to project scope." />
+        <SectionHeading title={t.pricing.title} text={t.pricing.text} />
         <div className="pricing-grid">
-          {['Software Project', 'Electrical Service', 'AI Automation'].map((plan) => (
+          {t.pricing.plans.map((plan) => (
             <article className="pricing-card" key={plan}>
               <h3>{plan}</h3>
-              <p>Custom estimate</p>
+              <p>{t.pricing.customEstimate}</p>
               <ul>
-                <li>Scope review</li>
-                <li>Planning and delivery milestones</li>
-                <li>Support options</li>
+                {t.pricing.features.map((feature) => (
+                  <li key={feature}>{feature}</li>
+                ))}
               </ul>
-              <Button to="/service-request">Request Estimate</Button>
+              <Button to="/service-request">{t.pricing.requestEstimate}</Button>
             </article>
           ))}
         </div>

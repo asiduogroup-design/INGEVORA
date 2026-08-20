@@ -1,13 +1,16 @@
 import { Container } from '../../components/common/Container'
 import { SectionHeading } from '../../components/common/SectionHeading'
+import { useLanguage } from '../../hooks/useLanguage'
 
 export function About() {
+  const { t } = useLanguage()
+
   return (
     <main className="page">
       <Container>
         <SectionHeading
-          title="Engineering the Future with Reliability & Automation"
-          text="INGEVORA combines software, AI, automation and electrical engineering into one practical engineering vision."
+          title={t.about.title}
+          text={t.about.text}
         />
       </Container>
     </main>
