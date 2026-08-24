@@ -1,3 +1,16 @@
 export default {
   title: 'My Requests',
+  loadError: 'Unable to load payments right now.',
+  empty: 'No payments yet.',
+  requestFallback: 'Service Request',
+  amountLabel: 'Amount',
+  statusLabel: 'Status',
+  referenceLabel: 'Stripe Session',
+  successTitle: 'Payment Completed',
+  successMessage: 'Your payment was received. Final status will always be confirmed by Stripe webhook.',
+  cancelTitle: 'Payment Cancelled',
+  cancelMessage: 'No payment was recorded as paid. You can retry from your request list.',
+  viewPayments: 'View Payment History',
+  backToRequests: 'Back to Requests',
+  tryAgain: 'Back to Profile',
 }

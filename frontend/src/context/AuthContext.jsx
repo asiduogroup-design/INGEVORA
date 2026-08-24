@@ -1,28 +1,72 @@
-import { createContext, useContext, useMemo, useState } from 'react'
+import { createContext, useContext, useEffect, useMemo, useState } from 'react'
+import { api } from '../services/api'
 
 const AuthContext = createContext(null)
 
 export function AuthProvider({ children }) {
   const [user, setUser] = useState(() => {
     const stored = localStorage.getItem('ingevora_user')
-    return stored ? JSON.parse(stored) : null
+    try {
+      const parsed = stored ? JSON.parse(stored) : null
+      return parsed?.token ? parsed : null
+    } catch {
+      localStorage.removeItem('ingevora_user')
+      return null
+    }
   })
+  const [isLoading, setIsLoading] = useState(() => user !== null)
+
+  useEffect(() => {
+    const token = user?.token
+    if (!token) {
+      return
+    }
+
+    api.get('/auth/me')
+      .then((response) => {
+        const currentUser = response.data?.data
+        if (!currentUser?.id) {
+          throw new Error('Invalid user response')
+        }
+        const authenticatedUser = { ...currentUser, token }
+        localStorage.setItem('ingevora_user', JSON.stringify(authenticatedUser))
+        setUser(authenticatedUser)
+      })
+      .catch(() => {
+        localStorage.removeItem('ingevora_user')
+        setUser(null)
+      })
+      .finally(() => setIsLoading(false))
+  }, [user?.token])
 
   const value = useMemo(
     () => ({
       user,
       isAuthenticated: Boolean(user),
+      isLoading,
       login: (payload) => {
-        const nextUser = { name: payload.name || 'INGEVORA User', email: payload.email }
+        const nextUser = {
+          id: payload.id,
+          name: payload.name || 'INGEVORA User',
+          email: payload.email,
+          role: payload.role || 'user',
+          token: payload.token,
+        }
         localStorage.setItem('ingevora_user', JSON.stringify(nextUser))
         setUser(nextUser)
       },
-      logout: () => {
-        localStorage.removeItem('ingevora_user')
-        setUser(null)
+      logout: async () => {
+        try {
+          if (user?.token) {
+            await api.post('/auth/logout')
+          }
+        } finally {
+          localStorage.removeItem('ingevora_user')
+          setUser(null)
+        }
       },
     }),
-    [user],
+    [isLoading, user],
   )
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>

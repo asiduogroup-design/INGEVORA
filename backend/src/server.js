@@ -12,6 +12,8 @@ import { contactRoutes } from "./routes/contactRoutes.js";
 import { aiRoutes } from "./routes/aiRoutes.js";
 import { pricingRoutes } from "./routes/pricingRoutes.js";
 import { testimonialRoutes } from "./routes/testimonialRoutes.js";
+import { paymentRoutes } from "./routes/paymentRoutes.js";
+import { stripeWebhook } from "./controllers/paymentController.js";
 import { errorHandler, notFound } from "./middleware/errorMiddleware.js";
 
 const app = express();
@@ -25,6 +27,10 @@ app.use(
 
 app.use(helmet());
 app.use(rateLimit({ windowMs: 15 * 60 * 1000, limit: 300 }));
+
+// Stripe webhook signature verification requires the raw request body.
+app.post("/api/payments/webhook", express.raw({ type: "application/json" }), stripeWebhook);
+
 app.use(express.json());
 
 app.get("/api/health", (req, res) => {
@@ -42,6 +48,7 @@ app.use("/api/contact", contactRoutes);
 app.use("/api/ai-updates", aiRoutes);
 app.use("/api/pricing", pricingRoutes);
 app.use("/api/testimonials", testimonialRoutes);
+app.use("/api/payments", paymentRoutes);
 
 app.use(notFound);
 app.use(errorHandler);

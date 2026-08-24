@@ -1,3 +1,16 @@
 export default {
   title: 'Le Mie Richieste',
+  loadError: 'Impossibile caricare i pagamenti in questo momento.',
+  empty: 'Nessun pagamento ancora.',
+  requestFallback: 'Richiesta di Servizio',
+  amountLabel: 'Importo',
+  statusLabel: 'Stato',
+  referenceLabel: 'Sessione Stripe',
+  successTitle: 'Pagamento Completato',
+  successMessage: 'Il tuo pagamento e stato ricevuto. Lo stato finale viene confermato solo dal webhook Stripe.',
+  cancelTitle: 'Pagamento Annullato',
+  cancelMessage: 'Nessun pagamento e stato registrato come pagato. Puoi riprovare dalla lista richieste.',
+  viewPayments: 'Vedi Cronologia Pagamenti',
+  backToRequests: 'Torna alle Richieste',
+  tryAgain: 'Torna al Profilo',
 }

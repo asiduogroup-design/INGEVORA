@@ -11,6 +11,8 @@ import { Register } from '../pages/Auth/Register'
 import { Profile } from '../pages/Profile/Profile'
 import { ServiceRequest } from '../pages/ServiceRequest/ServiceRequest'
 import { MyRequests } from '../pages/MyRequests/MyRequests'
+import { PaymentSuccess } from '../pages/MyRequests/PaymentSuccess'
+import { PaymentCancelled } from '../pages/MyRequests/PaymentCancelled'
 import { NotFound } from '../pages/NotFound/NotFound'
 import { ProtectedRoute } from './ProtectedRoute'
 
@@ -29,6 +31,8 @@ export function AppRoutes() {
       <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
       <Route path="/service-request" element={<ProtectedRoute><ServiceRequest /></ProtectedRoute>} />
       <Route path="/my-requests" element={<ProtectedRoute><MyRequests /></ProtectedRoute>} />
+      <Route path="/payments/success" element={<ProtectedRoute><PaymentSuccess /></ProtectedRoute>} />
+      <Route path="/payments/cancel" element={<ProtectedRoute><PaymentCancelled /></ProtectedRoute>} />
       <Route path="*" element={<NotFound />} />
     </Routes>
   )
