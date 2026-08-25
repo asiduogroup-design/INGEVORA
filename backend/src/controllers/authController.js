@@ -54,7 +54,13 @@ export async function login(req, res) {
   }
 
   const userRow = rows[0]
-  const matches = await comparePassword(password, userRow.password_hash)
+  let matches = false
+  try {
+    matches = await comparePassword(password, userRow.password_hash)
+  } catch (error) {
+    console.error(`Password comparison failed for ${normalizedEmail}:`, error.message)
+    matches = false
+  }
   if (!matches) {
     return res.status(401).json({ success: false, message: 'Invalid email or password' })
   }
