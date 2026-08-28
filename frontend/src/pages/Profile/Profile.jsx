@@ -5,6 +5,7 @@ import { Container } from '../../components/common/Container'
 import { EmptyState } from '../../components/common/EmptyState'
 import { LoadingSpinner } from '../../components/common/LoadingSpinner'
 import { ErrorMessage } from '../../components/common/ErrorMessage'
+import { PaymentMethodModal } from '../../components/common/PaymentMethodModal'
 import { useAuth } from '../../hooks/useAuth'
 import { useLanguage } from '../../hooks/useLanguage'
 import { api } from '../../services/api'
@@ -25,6 +26,9 @@ export function Profile() {
   const [status, setStatus] = useState('loading')
   const [savingQuoteId, setSavingQuoteId] = useState(null)
   const [payingRequestId, setPayingRequestId] = useState(null)
+  const [paymentTargetRequest, setPaymentTargetRequest] = useState(null)
+  const [paymentError, setPaymentError] = useState('')
+  const [codConfirmedId, setCodConfirmedId] = useState(null)
 
   const isAdmin = user?.role === 'admin'
 
@@ -61,8 +65,21 @@ export function Profile() {
     }
   }
 
-  async function handlePayNow(requestId) {
+  function openPaymentModal(request) {
+    setPaymentError('')
+    setPaymentTargetRequest(request)
+  }
+
+  function closePaymentModal() {
+    setPaymentTargetRequest(null)
+  }
+
+  async function handlePayWithCard() {
+    const requestId = paymentTargetRequest?.id
+    if (!requestId) return
+
     setPayingRequestId(requestId)
+    setPaymentError('')
     try {
       const response = await api.post('/payments/checkout-session', {
         serviceRequestId: requestId,
@@ -71,9 +88,29 @@ export function Profile() {
       const checkoutUrl = response.data?.data?.checkoutUrl
       if (checkoutUrl) {
         window.location.href = checkoutUrl
+      } else {
+        setPaymentError(t.profile.paymentGenericError)
       }
     } catch {
-      setStatus('error')
+      setPaymentError(t.profile.paymentGenericError)
+    } finally {
+      setPayingRequestId(null)
+    }
+  }
+
+  async function handlePayWithCod() {
+    const requestId = paymentTargetRequest?.id
+    if (!requestId) return
+
+    setPayingRequestId(requestId)
+    setPaymentError('')
+    try {
+      await api.post('/payments/cod', { serviceRequestId: requestId })
+      setCodConfirmedId(requestId)
+      setPaymentTargetRequest(null)
+      loadRequests()
+    } catch {
+      setPaymentError(t.profile.paymentGenericError)
     } finally {
       setPayingRequestId(null)
     }
@@ -145,15 +182,23 @@ export function Profile() {
                       </form>
                     )}
 
-                    {!isAdmin && request.quoted_amount && request.payment_status !== 'PAID' && (
+                    {!isAdmin && request.quoted_amount && request.payment_status !== 'PAID' && request.payment_status !== 'COD_PENDING' && (
                       <button
                         className="btn btn-primary"
                         type="button"
                         disabled={payingRequestId === request.id}
-                        onClick={() => handlePayNow(request.id)}
+                        onClick={() => openPaymentModal(request)}
                       >
                         {payingRequestId === request.id ? t.profile.redirectingToStripe : t.profile.payNow}
                       </button>
+                    )}
+
+                    {!isAdmin && request.payment_status === 'COD_PENDING' && (
+                      <p className="cod-confirmed-note">{t.profile.codPendingNote}</p>
+                    )}
+
+                    {codConfirmedId === request.id && (
+                      <p className="cod-confirmed-note">{t.profile.codConfirmed}</p>
                     )}
                   </div>
                   <span className={`status-pill ${STATUS_CLASSES[request.status] || 'status-submitted'}`}>
@@ -164,6 +209,23 @@ export function Profile() {
             </ul>
           )}
         </section>
+
+        {paymentTargetRequest && (
+          <PaymentMethodModal
+            amount={paymentTargetRequest.quoted_amount}
+            isSubmitting={payingRequestId === paymentTargetRequest.id}
+            onSelectCard={handlePayWithCard}
+            onSelectCod={handlePayWithCod}
+            onClose={closePaymentModal}
+          />
+        )}
+
+        {paymentError && (
+          <div className="payment-toast" role="alert">
+            {paymentError}
+            <button type="button" onClick={() => setPaymentError('')} aria-label={t.profile.closeModal}>×</button>
+          </div>
+        )}
       </Container>
     </main>
   )

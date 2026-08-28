@@ -71,8 +71,8 @@ export async function createCheckoutSession(req, res) {
 
   const [insertResult] = await pool.query(
     `INSERT INTO payments
-      (user_id, service_request_id, stripe_session_id, stripe_payment_intent_id, amount, currency, status)
-     VALUES (?, ?, ?, ?, ?, 'EUR', 'PENDING')`,
+      (user_id, service_request_id, payment_method, stripe_session_id, stripe_payment_intent_id, amount, currency, status)
+     VALUES (?, ?, 'CARD', ?, ?, ?, 'EUR', 'PENDING')`,
     [
       req.user.id,
       request.id,
@@ -94,6 +94,51 @@ export async function createCheckoutSession(req, res) {
       checkoutUrl: session.url,
     },
   }, 'Checkout session created')
+}
+
+export async function createCodPayment(req, res) {
+  const serviceRequestId = Number(req.body.serviceRequestId)
+  if (!Number.isFinite(serviceRequestId)) {
+    return res.status(400).json({ success: false, message: 'Invalid service request id' })
+  }
+
+  const [requestRows] = await pool.query(
+    `SELECT id, user_id, title, service_type, quoted_amount, payment_status
+     FROM service_requests
+     WHERE id = ? AND user_id = ?
+     LIMIT 1`,
+    [serviceRequestId, req.user.id]
+  )
+
+  if (requestRows.length === 0) {
+    return res.status(404).json({ success: false, message: 'Service request not found' })
+  }
+
+  const request = requestRows[0]
+  const quoteAmount = Number(request.quoted_amount)
+  if (!Number.isFinite(quoteAmount) || quoteAmount <= 0) {
+    return res.status(400).json({ success: false, message: 'This request is not quoted yet' })
+  }
+
+  if (request.payment_status === 'PAID') {
+    return res.status(400).json({ success: false, message: 'This request is already paid' })
+  }
+
+  const [insertResult] = await pool.query(
+    `INSERT INTO payments
+      (user_id, service_request_id, payment_method, stripe_session_id, stripe_payment_intent_id, amount, currency, status)
+     VALUES (?, ?, 'COD', NULL, NULL, ?, 'EUR', 'COD_PENDING')`,
+    [req.user.id, request.id, quoteAmount.toFixed(2)]
+  )
+
+  await pool.query(
+    "UPDATE service_requests SET payment_status = 'COD_PENDING' WHERE id = ?",
+    [request.id]
+  )
+
+  return ok(res, {
+    data: { paymentId: insertResult.insertId },
+  }, 'Cash on delivery selected')
 }
 
 export async function getPayment(req, res) {

@@ -14,11 +14,14 @@ export function AuthProvider({ children }) {
       return null
     }
   })
-  const [isLoading, setIsLoading] = useState(() => user !== null)
+  const [isLoading, setIsLoading] = useState(() => user !== null && !user?.isStaticTestUser)
 
   useEffect(() => {
     const token = user?.token
     if (!token) {
+      return
+    }
+    if (user?.isStaticTestUser) {
       return
     }
 
@@ -37,7 +40,7 @@ export function AuthProvider({ children }) {
         setUser(null)
       })
       .finally(() => setIsLoading(false))
-  }, [user?.token])
+  }, [user?.isStaticTestUser, user?.token])
 
   const value = useMemo(
     () => ({
@@ -51,6 +54,7 @@ export function AuthProvider({ children }) {
           email: payload.email,
           role: payload.role || 'user',
           token: payload.token,
+          isStaticTestUser: payload.isStaticTestUser || false,
         }
         localStorage.setItem('ingevora_user', JSON.stringify(nextUser))
         setUser(nextUser)

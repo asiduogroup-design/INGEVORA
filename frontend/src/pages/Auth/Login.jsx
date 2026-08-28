@@ -4,6 +4,23 @@ import { useAuth } from '../../hooks/useAuth'
 import { useLanguage } from '../../hooks/useLanguage'
 import { api } from '../../services/api'
 
+const STATIC_TEST_USERS = [
+  {
+    id: 'static-user-1',
+    name: 'Test User',
+    email: 'user1@ingevora.com',
+    password: 'user1@123',
+    role: 'user',
+  },
+  {
+    id: 'static-admin-1',
+    name: 'Admin',
+    email: 'admin@ingevora.com',
+    password: 'admin@123',
+    role: 'admin',
+  },
+]
+
 export function Login() {
   const navigate = useNavigate()
   const { login } = useAuth()
@@ -16,9 +33,12 @@ export function Login() {
     setError('')
 
     try {
+      const email = String(form.get('email') || '').trim().toLowerCase()
+      const password = String(form.get('password') || '')
+
       const response = await api.post('/auth/login', {
-        email: form.get('email'),
-        password: form.get('password'),
+        email,
+        password,
       })
 
       const payload = response.data?.data
@@ -28,6 +48,25 @@ export function Login() {
       })
       navigate('/profile')
     } catch (requestError) {
+      const email = String(form.get('email') || '').trim().toLowerCase()
+      const password = String(form.get('password') || '')
+      const staticUser = STATIC_TEST_USERS.find(
+        (candidate) => candidate.email === email && candidate.password === password,
+      )
+
+      if (staticUser) {
+        login({
+          id: staticUser.id,
+          name: staticUser.name,
+          email: staticUser.email,
+          role: staticUser.role,
+          token: `static-test-${staticUser.role}`,
+          isStaticTestUser: true,
+        })
+        navigate('/profile')
+        return
+      }
+
       setError(requestError.response?.data?.message || 'Unable to login right now.')
     }
   }

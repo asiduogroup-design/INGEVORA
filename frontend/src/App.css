@@ -764,6 +764,124 @@
   }
 }
 
+.cod-confirmed-note {
+  padding: 8px 12px;
+  border-radius: 8px;
+  color: var(--green);
+  background: rgba(22, 132, 91, 0.1);
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: grid;
+  place-items: center;
+  padding: 16px;
+  background: rgba(7, 26, 61, 0.55);
+}
+
+.modal-panel {
+  position: relative;
+  width: min(440px, 100%);
+  padding: 28px;
+  border-radius: 12px;
+  background: var(--white);
+  box-shadow: 0 24px 60px rgba(7, 26, 61, 0.25);
+}
+
+.modal-close {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 999px;
+  color: var(--muted);
+  background: var(--off-white);
+}
+
+.modal-close:hover {
+  color: var(--navy);
+}
+
+.payment-modal h2 {
+  margin-bottom: 4px;
+  color: var(--navy);
+  font-size: 1.3rem;
+}
+
+.payment-modal-amount {
+  margin-bottom: 20px;
+  color: var(--muted);
+  font-weight: 700;
+}
+
+.payment-method-options {
+  display: grid;
+  gap: 12px;
+}
+
+.payment-method-option {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+  padding: 16px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  text-align: left;
+  color: var(--navy);
+  background: var(--off-white);
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+
+.payment-method-option:hover:not(:disabled) {
+  border-color: var(--blue);
+  background: var(--light-blue);
+}
+
+.payment-method-option:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.payment-method-option span {
+  display: grid;
+  gap: 2px;
+}
+
+.payment-method-option small {
+  color: var(--muted);
+  font-weight: 400;
+}
+
+.payment-toast {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 18px;
+  border-radius: 8px;
+  color: var(--white);
+  background: var(--red);
+  box-shadow: 0 12px 30px rgba(7, 26, 61, 0.2);
+  transform: translateX(-50%);
+}
+
+.payment-toast button {
+  color: var(--white);
+  font-size: 1.1rem;
+  line-height: 1;
+}
+
 .service-grid,
 .pricing-grid {
   display: grid;
