@@ -1,0 +1,118 @@
+<svg width="320" height="340" viewBox="0 0 320 340" fill="none" xmlns="http://www.w3.org/2000/svg">
+
+  <defs>
+    <linearGradient id="fur" x1="160" y1="70" x2="160" y2="280" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFFFFF"/>
+      <stop offset="1" stop-color="#E8EEF4"/>
+    </linearGradient>
+  </defs>
+
+  <ellipse
+    cx="160"
+    cy="316"
+    rx="90"
+    ry="16"
+    fill="#000B1C"
+    fill-opacity="0.2"
+  />
+
+  <!-- Body -->
+  <ellipse
+    cx="160"
+    cy="249"
+    rx="82"
+    ry="73"
+    fill="url(#fur)"
+  />
+
+  <!-- Belly -->
+  <ellipse
+    cx="160"
+    cy="260"
+    rx="43"
+    ry="48"
+    fill="#F9FBFD"
+  />
+
+  <!-- Ears -->
+  <circle cx="88" cy="84" r="39" fill="#121927"/>
+  <circle cx="232" cy="84" r="39" fill="#121927"/>
+
+  <!-- Head -->
+  <ellipse
+    cx="160"
+    cy="145"
+    rx="101"
+    ry="91"
+    fill="url(#fur)"
+  />
+
+  <!-- Patches -->
+  <ellipse
+    cx="112"
+    cy="143"
+    rx="35"
+    ry="48"
+    transform="rotate(27 112 143)"
+    fill="#121927"
+  />
+
+  <ellipse
+    cx="208"
+    cy="143"
+    rx="35"
+    ry="48"
+    transform="rotate(-27 208 143)"
+    fill="#121927"
+  />
+
+  <!-- Hands covering eyes -->
+  <ellipse
+    cx="118"
+    cy="148"
+    rx="25"
+    ry="17"
+    transform="rotate(-12 118 148)"
+    fill="#121927"
+  />
+
+  <ellipse
+    cx="202"
+    cy="148"
+    rx="25"
+    ry="17"
+    transform="rotate(12 202 148)"
+    fill="#121927"
+  />
+
+  <!-- Hands -->
+  <circle cx="101" cy="143" r="8" fill="#1A2332"/>
+  <circle cx="219" cy="143" r="8" fill="#1A2332"/>
+
+  <!-- Nose -->
+  <ellipse cx="160" cy="178" rx="13" ry="10" fill="#101826"/>
+
+  <!-- Mouth -->
+  <path
+    d="M151 189C157 194 163 194 169 189"
+    stroke="#101826"
+    stroke-width="4"
+    stroke-linecap="round"
+  />
+
+  <!-- Arms -->
+  <path
+    d="M86 227C68 239 66 269 78 286"
+    stroke="#121927"
+    stroke-width="26"
+    stroke-linecap="round"
+  />
+
+  <path
+    d="M234 227C252 239 254 269 242 286"
+    stroke="#121927"
+    stroke-width="26"
+    stroke-linecap="round"
+  />
+
+</svg>

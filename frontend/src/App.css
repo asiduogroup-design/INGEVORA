@@ -564,11 +564,6 @@
   color: rgba(255, 255, 255, 0.78);
 }
 
-.auth-page {
-  width: min(920px, calc(100% - 32px));
-  margin: 0 auto;
-}
-
 .profile-layout {
   display: grid;
   grid-template-columns: 260px 1fr;
@@ -892,8 +887,7 @@
 .service-card,
 .pricing-card,
 .comparison-panel,
-.form-grid,
-.auth-form {
+.form-grid {
   border: 1px solid var(--border);
   border-radius: 8px;
   background: var(--white);
@@ -957,16 +951,11 @@
   color: var(--green);
 }
 
-.form-grid,
-.auth-form {
+.form-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 16px;
   padding: clamp(20px, 4vw, 34px);
-}
-
-.auth-form {
-  max-width: 560px;
 }
 
 label {
@@ -1305,8 +1294,7 @@ textarea {
   }
 
   .comparison-row,
-  .form-grid,
-  .auth-form {
+  .form-grid {
     grid-template-columns: 1fr;
   }
 

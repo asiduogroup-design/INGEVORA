@@ -1,0 +1,29 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <style>
+      body {
+        margin: 0;
+        background: #111827;
+      }
+
+      video {
+        width: 100vw;
+        height: 100vh;
+        object-fit: contain;
+      }
+    </style>
+  </head>
+  <body>
+    <video id="video" muted playsinline></video>
+    <script>
+      const params = new URLSearchParams(location.search)
+      const video = document.getElementById('video')
+      video.src = params.get('src')
+      video.addEventListener('loadedmetadata', () => {
+        video.currentTime = Number(params.get('time') || 0)
+      })
+    </script>
+  </body>
+</html>
