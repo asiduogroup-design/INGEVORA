@@ -1,10 +1,16 @@
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import { LogoMark } from '../branding/LogoMark'
 import { useLanguage } from '../../hooks/useLanguage'
 
 export function Footer() {
+  const location = useLocation()
   const { t, toggleLanguage } = useLanguage()
   const nav = t.common.nav
+
+  const isAuthPage = ['/login', '/register'].includes(location.pathname)
+  if (isAuthPage) {
+    return null
+  }
 
   return (
     <footer className="site-footer">

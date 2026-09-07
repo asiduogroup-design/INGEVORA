@@ -17,6 +17,7 @@ import { useLanguage } from '../../hooks/useLanguage'
 import { api } from '../../services/api'
 
 import { AuthPanda } from '../../components/auth/AuthPanda'
+import { AuthMotionBackground } from '../../components/auth/AuthMotionBackground'
 
 import './Auth.css'
 
@@ -211,6 +212,7 @@ export function Register() {
       onPointerUp={finishLampDrag}
       onPointerCancel={finishLampDrag}
     >
+      <AuthMotionBackground lightOn={lightOn} />
       <section className="auth-shell">
 
         {/* =========================
@@ -252,7 +254,7 @@ export function Register() {
               <button
                 type="button"
                 className="lamp-button"
-                onDoubleClick={
+                onClick={
                   toggleLight
                 }
                 aria-label={
@@ -320,7 +322,7 @@ export function Register() {
             <span className="auth-divider" />
 
             <span>
-              Double-click or pull the lamp
+              Click or pull the lamp
             </span>
           </div>
 
