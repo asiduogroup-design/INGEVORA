@@ -1,4 +1,4 @@
-import { Link, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { useState } from 'react'
 import {
   Eye,
@@ -15,6 +15,7 @@ import { api } from '../../services/api'
 
 import { AuthPanda } from '../../components/auth/AuthPanda'
 import { AuthMotionBackground } from '../../components/auth/AuthMotionBackground'
+import { LogoMark } from '../../components/branding/LogoMark'
 
 import './Auth.css'
 
@@ -35,7 +36,7 @@ const STATIC_TEST_USERS = [
   },
 ]
 
-export function Login() {
+export function Login({ onSwitchToRegister }) {
   const navigate = useNavigate()
 
   const { login } = useAuth()
@@ -217,7 +218,7 @@ export function Login() {
       <section className="auth-shell">
 
         {/* =========================
-            LEFT
+            LEFT - LOGO & PANDA
         ========================== */}
 
         <div className="auth-visual">
@@ -236,9 +237,8 @@ export function Login() {
 
             <p className="auth-visual-copy">
               Sign in to continue to your
-              INGEVORA workspace.
-              Your little panda is keeping
-              watch.
+              INGEVORA workspace. Your
+              journey starts here.
             </p>
           </div>
 
@@ -308,6 +308,10 @@ export function Login() {
 
           </div>
 
+          <div className="logo-area">
+            <LogoMark />
+          </div>
+
           <div className="auth-visual-footer">
             <span>
               {lightOn
@@ -325,7 +329,7 @@ export function Login() {
         </div>
 
         {/* =========================
-            RIGHT
+            RIGHT - FORM
         ========================== */}
 
         <div className="auth-card">
@@ -486,9 +490,13 @@ export function Login() {
                 {t.auth.newToIngevora}
               </span>
 
-              <Link to="/register">
+              <button
+                type="button"
+                className="auth-bottom-link"
+                onClick={onSwitchToRegister}
+              >
                 {t.auth.createAnAccount}
-              </Link>
+              </button>
             </div>
 
           </form>

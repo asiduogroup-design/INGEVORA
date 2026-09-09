@@ -1,5 +1,5 @@
 import { Menu, X } from 'lucide-react'
-import { useState } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import { NavLink } from 'react-router-dom'
 import { IngevoraLogo } from '../branding/IngevoraLogo'
 import { useLanguage } from '../../hooks/useLanguage'
@@ -20,6 +20,32 @@ export function Navbar() {
   const { t, toggleLanguage } = useLanguage()
   const { isAuthenticated, logout } = useAuth()
   const nav = t.common.nav
+  const menuRef = useRef(null)
+  const buttonRef = useRef(null)
+
+  // Close menu when clicking outside
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (
+        menuRef.current &&
+        !menuRef.current.contains(event.target) &&
+        buttonRef.current &&
+        !buttonRef.current.contains(event.target)
+      ) {
+        setOpen(false)
+      }
+    }
+
+    if (open) {
+      document.addEventListener('mousedown', handleClickOutside)
+      document.addEventListener('touchstart', handleClickOutside)
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside)
+      document.removeEventListener('touchstart', handleClickOutside)
+    }
+  }, [open])
 
   return (
     <header className="site-header">
@@ -48,6 +74,7 @@ export function Navbar() {
         <button
           className="menu-button"
           type="button"
+          ref={buttonRef}
           aria-label="Toggle menu"
           aria-expanded={open}
           onClick={() => setOpen((value) => !value)}
@@ -56,7 +83,7 @@ export function Navbar() {
         </button>
       </div>
       {open && (
-        <div className="mobile-menu">
+        <div className="mobile-menu" ref={menuRef}>
           {links.map(([to, key]) => (
             <NavLink key={to} to={to} onClick={() => setOpen(false)}>
               {nav[key]}

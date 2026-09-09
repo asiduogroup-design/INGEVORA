@@ -1,0 +1,31 @@
+.auth-page-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse at 85% 15%, rgba(8, 127, 229, 0.08), transparent 50%),
+    radial-gradient(ellipse at 15% 85%, rgba(21, 151, 245, 0.07), transparent 50%),
+    linear-gradient(145deg, #eaf4fd 0%, #e1effe 50%, #eaf3fc 100%);
+  perspective: 1200px;
+}
+
+.auth-page-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  will-change: transform, opacity;
+  transform-style: preserve-3d;
+}
+
+/* Smooth page turn with 3D effect */
+@media (prefers-reduced-motion: no-preference) {
+  .auth-page-wrapper {
+    transform-origin: center;
+  }
+}

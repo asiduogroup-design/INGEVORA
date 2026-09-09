@@ -1,4 +1,4 @@
-import { Link, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { useState } from 'react'
 import {
   Building2,
@@ -18,10 +18,11 @@ import { api } from '../../services/api'
 
 import { AuthPanda } from '../../components/auth/AuthPanda'
 import { AuthMotionBackground } from '../../components/auth/AuthMotionBackground'
+import { LogoMark } from '../../components/branding/LogoMark'
 
 import './Auth.css'
 
-export function Register() {
+export function Register({ onSwitchToLogin }) {
   const navigate = useNavigate()
 
   const { login } = useAuth()
@@ -216,7 +217,7 @@ export function Register() {
       <section className="auth-shell">
 
         {/* =========================
-            LEFT
+            LEFT - LOGO & PANDA
         ========================== */}
 
         <div className="auth-visual">
@@ -237,8 +238,7 @@ export function Register() {
             <p className="auth-visual-copy">
               Join INGEVORA and access
               your engineering workspace.
-              Our little panda will be here
-              while you get started.
+              Ready to get started.
             </p>
 
           </div>
@@ -312,6 +312,10 @@ export function Register() {
 
           </div>
 
+          <div className="logo-area">
+            <LogoMark />
+          </div>
+
           <div className="auth-visual-footer">
             <span>
               {lightOn
@@ -329,7 +333,7 @@ export function Register() {
         </div>
 
         {/* =========================
-            RIGHT
+            RIGHT - FORM
         ========================== */}
 
         <div className="auth-card">
@@ -647,9 +651,13 @@ export function Register() {
                 {t.auth.alreadyHaveAccount}
               </span>
 
-              <Link to="/login">
+              <button
+                type="button"
+                className="auth-bottom-link"
+                onClick={onSwitchToLogin}
+              >
                 {t.auth.loginLink}
-              </Link>
+              </button>
             </div>
 
           </form>

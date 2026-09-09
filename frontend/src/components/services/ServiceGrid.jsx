@@ -1,4 +1,5 @@
-import { ArrowRight, Cpu, Zap } from 'lucide-react'
+import { ArrowRight } from 'lucide-react'
+import * as Icons from 'lucide-react'
 import { motion } from 'framer-motion'
 import { Button } from '../common/Button'
 import { useLanguage } from '../../hooks/useLanguage'
@@ -9,10 +10,13 @@ export function ServiceGrid({ services, type = 'software' }) {
   return (
     <div className="service-grid">
       {services.map((service, index) => {
-        const title = typeof service === 'string' ? service : service.title
-        const category = typeof service === 'string' ? type : service.category
-        const Icon = category === 'Electrical' || type === 'electrical' ? Zap : Cpu
+        const title = service.title || service
+        const icon = service.icon || (type === 'electrical' ? 'Zap' : 'Cpu')
+        const category = service.category || type
         const categoryLabel = type === 'electrical' ? t.common.nav.electrical : t.common.nav.software
+        const IconComponent = Icons[icon] || Icons.Cpu
+        const description = t.services.descriptions?.[title] || t.services.cardDescription
+
         return (
           <motion.article
             className="service-card"
@@ -22,10 +26,10 @@ export function ServiceGrid({ services, type = 'software' }) {
             viewport={{ once: true, margin: '-40px' }}
             transition={{ duration: 0.45, delay: Math.min(index * 0.03, 0.18) }}
           >
-            <Icon />
+            <IconComponent />
             <span>{categoryLabel}</span>
             <h3>{t.services.items[title] || title}</h3>
-            <p>{t.services.cardDescription}</p>
+            <p>{description}</p>
             <div className="card-actions">
               <Button to="/contact" variant="secondary">{t.services.learnMore}</Button>
               <Button to="/service-request" variant="ghost">{t.services.requestService} <ArrowRight size={16} /></Button>

@@ -6,8 +6,7 @@ import { About } from '../pages/About/About'
 import { AIUpdates } from '../pages/AI/AIUpdates'
 import { Pricing } from '../pages/Pricing/Pricing'
 import { Contact } from '../pages/Contact/Contact'
-import { Login } from '../pages/Auth/Login'
-import { Register } from '../pages/Auth/Register'
+import { AuthPage } from '../pages/Auth/AuthPage'
 import { Profile } from '../pages/Profile/Profile'
 import { ServiceRequest } from '../pages/ServiceRequest/ServiceRequest'
 import { MyRequests } from '../pages/MyRequests/MyRequests'
@@ -26,8 +25,8 @@ export function AppRoutes() {
       <Route path="/ai-updates" element={<AIUpdates />} />
       <Route path="/pricing" element={<ProtectedRoute><Pricing /></ProtectedRoute>} />
       <Route path="/contact" element={<Contact />} />
-      <Route path="/login" element={<Login />} />
-      <Route path="/register" element={<Register />} />
+      <Route path="/login" element={<AuthPage />} />
+      <Route path="/register" element={<AuthPage />} />
       <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
       <Route path="/service-request" element={<ProtectedRoute><ServiceRequest /></ProtectedRoute>} />
       <Route path="/my-requests" element={<ProtectedRoute><MyRequests /></ProtectedRoute>} />
