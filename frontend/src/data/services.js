@@ -1,5 +1,5 @@
 export const softwareServices = [
-  { title: 'Web Development', icon: 'Code2' },
+  { title: 'Web Development', icon: 'Code2', videoUrl: 'https://res.cloudinary.com/dlx9tnj7p/video/upload/v1789191914/Create_a_premium_photorealisti_1_kkylbq.mp4' },
   { title: 'Mobile App Development', icon: 'Smartphone' },
   { title: 'Custom Software', icon: 'Blocks' },
   { title: 'AI Solutions', icon: 'BrainCircuit' },

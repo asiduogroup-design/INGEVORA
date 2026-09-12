@@ -11,6 +11,19 @@
     radial-gradient(ellipse at 15% 85%, rgba(21, 151, 245, 0.07), transparent 50%),
     linear-gradient(145deg, #eaf4fd 0%, #e1effe 50%, #eaf3fc 100%);
   perspective: 1200px;
+  z-index: 10;
+}
+
+@media (max-width: 640px) {
+  .auth-page-container {
+    position: absolute;
+    top: 76px;
+    height: auto;
+    min-height: calc(100vh - 76px);
+    min-height: calc(100dvh - 76px);
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
 }
 
 .auth-page-wrapper {
