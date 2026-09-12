@@ -12,7 +12,11 @@ export const softwareServices = [
     videoUrl: 'https://res.cloudinary.com/dlx9tnj7p/video/upload/v1789028646/Create_a_second_premium_cin_ho4wcc.mp4'
   },
   { title: 'SaaS Development', icon: 'Cloud' },
-  { title: 'UI/UX Design', icon: 'PenTool' },
+  { 
+    title: 'UI/UX Design', 
+    icon: 'PenTool',
+    videoUrl: 'https://res.cloudinary.com/dlx9tnj7p/video/upload/v1789191206/Create_a_premium_photorealisti_ajvxzu.mp4'
+  },
   { 
     title: 'Software Maintenance', 
     icon: 'Wrench',
