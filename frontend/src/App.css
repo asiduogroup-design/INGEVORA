@@ -334,6 +334,7 @@
   max-width: 640px;
   margin: 0 auto 44px;
   text-align: center;
+  position: relative;
 }
 
 .process-heading .ai-pill {
@@ -344,6 +345,31 @@
   color: var(--navy);
   font-size: clamp(1.8rem, 4vw, 2.6rem);
   line-height: 1.15;
+  position: relative;
+  transition: color 320ms ease, transform 320ms ease;
+  cursor: pointer;
+  padding: 12px 20px;
+  border-radius: 12px;
+}
+
+.process-heading h2:hover {
+  color: var(--white);
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.3), rgba(34, 193, 220, 0.2));
+  animation: waveRipple 1.2s ease-out;
+}
+
+.process-heading h2::before {
+  content: '';
+  position: absolute;
+  inset: -12px -20px;
+  border-radius: 12px;
+  background: radial-gradient(circle, rgba(59, 130, 246, 0.1), transparent 70%);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.process-heading h2:hover::before {
+  animation: waveOutward 1.5s ease-out forwards;
 }
 
 .process-heading p {
@@ -353,71 +379,220 @@
 .process-list {
   position: relative;
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 32px 16px;
-  padding: 44px 0 0;
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 44px 0;
   list-style: none;
+  aspect-ratio: 1;
+  place-items: center;
 }
 
 .process-list::before {
   content: '';
   position: absolute;
-  top: 66px;
-  left: 6%;
-  right: 6%;
-  height: 2px;
-  background: linear-gradient(90deg, rgba(8, 127, 229, 0.04), rgba(8, 127, 229, 0.35), rgba(8, 127, 229, 0.04));
+  inset: 50%;
+  transform: translate(-50%, -50%);
+  width: 420px;
+  height: 420px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(59, 130, 246, 0.05), transparent 60%);
+  z-index: -1;
+  pointer-events: none;
+}
+
+.process-list::after {
+  display: none;
 }
 
 .process-list li {
-  position: relative;
-  z-index: 1;
+  position: absolute;
   display: grid;
   justify-items: center;
-  gap: 8px;
-  padding: 0 6px;
+  gap: 12px;
   text-align: center;
-  transition: transform 260ms ease;
+  transition: transform 320ms cubic-bezier(0.22, 1, 0.36, 1), filter 320ms ease;
+  width: 140px;
+}
+
+.process-list li::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  width: 200px;
+  height: 200px;
+  border: 2px solid;
+  border-radius: 50%;
+  opacity: 0;
+  transition: opacity 320ms ease;
+  pointer-events: none;
+}
+
+.process-list li:hover::before {
+  opacity: 1;
 }
 
 .process-list li:hover {
-  transform: perspective(600px) translateY(-6px) scale(1.06);
+  transform: scale(1.15);
+  z-index: 10;
 }
 
 .process-list li:hover .process-icon {
-  box-shadow: 0 20px 38px rgba(7, 26, 61, 0.32);
+  transform: scale(1.2);
+  filter: drop-shadow(0 20px 40px rgba(7, 26, 61, 0.5));
+  animation: sparkleFloat 1.2s ease-in-out forwards;
 }
+
+/* Circular positioning for 8 items - perfectly aligned */
+.process-list li:nth-child(1) { transform: rotate(0deg) translateY(-300px) rotate(-0deg); }
+.process-list li:nth-child(2) { transform: rotate(45deg) translateY(-300px) rotate(-45deg); }
+.process-list li:nth-child(3) { transform: rotate(90deg) translateY(-300px) rotate(-90deg); }
+.process-list li:nth-child(4) { transform: rotate(135deg) translateY(-300px) rotate(-135deg); }
+.process-list li:nth-child(5) { transform: rotate(180deg) translateY(-300px) rotate(-180deg); }
+.process-list li:nth-child(6) { transform: rotate(225deg) translateY(-300px) rotate(-225deg); }
+.process-list li:nth-child(7) { transform: rotate(270deg) translateY(-300px) rotate(-270deg); }
+.process-list li:nth-child(8) { transform: rotate(315deg) translateY(-300px) rotate(-315deg); }
 
 .process-icon-wrap {
   position: relative;
   display: inline-grid;
+  width: 88px;
+  height: 88px;
+  cursor: pointer;
+  transition: transform 320ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.process-icon-wrap::before {
+  content: '';
+  position: absolute;
+  inset: -8px;
+  border-radius: 50%;
+  background: radial-gradient(circle, currentColor, transparent 70%);
+  opacity: 0;
+  animation: sparkleRing 1.5s ease-out forwards;
+  pointer-events: none;
+}
+
+.process-list li:hover .process-icon-wrap::before {
+  opacity: 0.6;
+  animation: sparkleRing 1.5s ease-out infinite;
 }
 
 .process-icon {
   display: grid;
   place-items: center;
-  width: 52px;
-  height: 52px;
-  border-radius: 14px;
+  width: 88px;
+  height: 88px;
   color: var(--white);
-  box-shadow: 0 12px 26px rgba(7, 26, 61, 0.18);
-  transition: transform 260ms ease, box-shadow 260ms ease;
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  border: 3px solid;
+  position: relative;
+  transition: transform 320ms cubic-bezier(0.22, 1, 0.36, 1), filter 320ms ease, border-width 320ms ease;
+  background-size: 200% 200%;
+  animation: hexglow 0.6s ease-in-out;
 }
+
+.process-icon::before {
+  content: '';
+  position: absolute;
+  inset: -3px;
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  z-index: -1;
+  border-radius: 0;
+}
+
+.process-icon::after {
+  content: '';
+  position: absolute;
+  inset: -5px;
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  border: 2px solid;
+  opacity: 0;
+  transition: opacity 320ms ease, box-shadow 320ms ease;
+  animation: borderPulse 2s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.process-list li:hover .process-icon::after {
+  opacity: 1;
+  animation: borderHighlight 0.6s ease-out;
+}
+
+.process-list li:nth-child(1) .process-icon {
+  border-color: rgb(59, 130, 246);
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.2), rgba(59, 130, 246, 0.05));
+  animation: flowBorder1 8s linear infinite;
+}
+
+.process-list li:nth-child(2) .process-icon {
+  border-color: rgb(34, 193, 220);
+  background: linear-gradient(135deg, rgba(34, 193, 220, 0.2), rgba(34, 193, 220, 0.05));
+  animation: flowBorder2 8s linear infinite;
+}
+
+.process-list li:nth-child(3) .process-icon {
+  border-color: rgb(124, 92, 242);
+  background: linear-gradient(135deg, rgba(124, 92, 242, 0.2), rgba(124, 92, 242, 0.05));
+  animation: flowBorder3 8s linear infinite;
+}
+
+.process-list li:nth-child(4) .process-icon {
+  border-color: rgb(192, 38, 211);
+  background: linear-gradient(135deg, rgba(192, 38, 211, 0.2), rgba(192, 38, 211, 0.05));
+  animation: flowBorder4 8s linear infinite;
+}
+
+.process-list li:nth-child(5) .process-icon {
+  border-color: rgb(79, 70, 229);
+  background: linear-gradient(135deg, rgba(79, 70, 229, 0.2), rgba(79, 70, 229, 0.05));
+  animation: flowBorder5 8s linear infinite;
+}
+
+.process-list li:nth-child(6) .process-icon {
+  border-color: rgb(34, 193, 160);
+  background: linear-gradient(135deg, rgba(34, 193, 160, 0.2), rgba(34, 193, 160, 0.05));
+  animation: flowBorder6 8s linear infinite;
+}
+
+.process-list li:nth-child(7) .process-icon {
+  border-color: rgb(8, 145, 178);
+  background: linear-gradient(135deg, rgba(8, 145, 178, 0.2), rgba(8, 145, 178, 0.05));
+  animation: flowBorder7 8s linear infinite;
+}
+
+.process-list li:nth-child(8) .process-icon {
+  border-color: rgb(124, 58, 237);
+  background: linear-gradient(135deg, rgba(124, 58, 237, 0.2), rgba(124, 58, 237, 0.05));
+  animation: flowBorder8 8s linear infinite;
+}
+
+/* Hover border highlight effects */
+.process-list li:nth-child(1) .process-icon::after { border-color: rgb(59, 130, 246); }
+.process-list li:nth-child(2) .process-icon::after { border-color: rgb(34, 193, 220); }
+.process-list li:nth-child(3) .process-icon::after { border-color: rgb(124, 92, 242); }
+.process-list li:nth-child(4) .process-icon::after { border-color: rgb(192, 38, 211); }
+.process-list li:nth-child(5) .process-icon::after { border-color: rgb(79, 70, 229); }
+.process-list li:nth-child(6) .process-icon::after { border-color: rgb(34, 193, 160); }
+.process-list li:nth-child(7) .process-icon::after { border-color: rgb(8, 145, 178); }
+.process-list li:nth-child(8) .process-icon::after { border-color: rgb(124, 58, 237); }
 
 .process-step-number {
   position: absolute;
-  top: -6px;
-  right: -6px;
-  width: 20px;
-  height: 20px;
+  top: 50%;
+  right: 50%;
+  transform: translate(50%, -50%);
+  width: 28px;
+  height: 28px;
   display: grid;
   place-items: center;
   border-radius: 999px;
   background: var(--white);
-  border: 1px solid var(--border);
-  font-size: 0.66rem;
+  border: 2px solid var(--border);
+  font-size: 0.72rem;
   font-weight: 800;
-  color: var(--muted);
+  color: var(--deep-navy);
+  z-index: 2;
+  box-shadow: 0 2px 8px rgba(7, 26, 61, 0.2);
 }
 
 .process-list h3 {
@@ -741,6 +916,193 @@
 @keyframes spin {
   to {
     transform: rotate(360deg);
+  }
+}
+
+@keyframes rotateCircle {
+  from {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+@keyframes waveRipple {
+  0% {
+    box-shadow: 
+      0 0 0 0 rgba(59, 130, 246, 0.7),
+      0 0 0 0 rgba(34, 193, 220, 0.5);
+  }
+  50% {
+    box-shadow: 
+      0 0 0 10px rgba(59, 130, 246, 0.3),
+      0 0 0 15px rgba(34, 193, 220, 0.2);
+  }
+  100% {
+    box-shadow: 
+      0 0 0 20px rgba(59, 130, 246, 0),
+      0 0 0 30px rgba(34, 193, 220, 0);
+  }
+}
+
+@keyframes waveOutward {
+  0% {
+    transform: scale(0.8);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(2.5);
+    opacity: 0;
+  }
+}
+
+@keyframes sparkleRing {
+  0% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  50% {
+    opacity: 0.8;
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.8);
+  }
+}
+
+@keyframes sparkleFloat {
+  0% {
+    transform: scale(1) translateY(0);
+  }
+  50% {
+    transform: scale(1.15) translateY(-8px);
+  }
+  100% {
+    transform: scale(1.15) translateY(-8px);
+  }
+}
+
+@keyframes borderPulse {
+  0%, 100% {
+    box-shadow: 0 0 0 0 currentColor;
+  }
+  50% {
+    box-shadow: 0 0 0 2px currentColor;
+  }
+}
+
+@keyframes borderHighlight {
+  0% {
+    opacity: 0;
+    transform: scale(0.9);
+    box-shadow: 0 0 0 0 currentColor;
+  }
+  50% {
+    box-shadow: 0 0 12px 4px currentColor;
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+    box-shadow: 0 0 8px 2px currentColor;
+  }
+}
+
+@keyframes flowingLine {
+  0% {
+    background-position: 0% center;
+  }
+  100% {
+    background-position: 100% center;
+  }
+}
+
+@keyframes hexglow {
+  0%, 100% {
+    filter: drop-shadow(0 8px 16px rgba(7, 26, 61, 0.15));
+  }
+  50% {
+    filter: drop-shadow(0 12px 24px rgba(7, 26, 61, 0.25));
+  }
+}
+
+@keyframes flowBorder1 {
+  0%, 100% {
+    border-color: rgb(59, 130, 246);
+    box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.3), inset 0 0 0 0 rgba(59, 130, 246, 0.1);
+  }
+  50% {
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.5), inset 0 0 0 2px rgba(59, 130, 246, 0.2);
+  }
+}
+
+@keyframes flowBorder2 {
+  0%, 100% {
+    border-color: rgb(34, 193, 220);
+    box-shadow: 0 0 0 0 rgba(34, 193, 220, 0.3), inset 0 0 0 0 rgba(34, 193, 220, 0.1);
+  }
+  50% {
+    box-shadow: 0 0 0 2px rgba(34, 193, 220, 0.5), inset 0 0 0 2px rgba(34, 193, 220, 0.2);
+  }
+}
+
+@keyframes flowBorder3 {
+  0%, 100% {
+    border-color: rgb(124, 92, 242);
+    box-shadow: 0 0 0 0 rgba(124, 92, 242, 0.3), inset 0 0 0 0 rgba(124, 92, 242, 0.1);
+  }
+  50% {
+    box-shadow: 0 0 0 2px rgba(124, 92, 242, 0.5), inset 0 0 0 2px rgba(124, 92, 242, 0.2);
+  }
+}
+
+@keyframes flowBorder4 {
+  0%, 100% {
+    border-color: rgb(192, 38, 211);
+    box-shadow: 0 0 0 0 rgba(192, 38, 211, 0.3), inset 0 0 0 0 rgba(192, 38, 211, 0.1);
+  }
+  50% {
+    box-shadow: 0 0 0 2px rgba(192, 38, 211, 0.5), inset 0 0 0 2px rgba(192, 38, 211, 0.2);
+  }
+}
+
+@keyframes flowBorder5 {
+  0%, 100% {
+    border-color: rgb(79, 70, 229);
+    box-shadow: 0 0 0 0 rgba(79, 70, 229, 0.3), inset 0 0 0 0 rgba(79, 70, 229, 0.1);
+  }
+  50% {
+    box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.5), inset 0 0 0 2px rgba(79, 70, 229, 0.2);
+  }
+}
+
+@keyframes flowBorder6 {
+  0%, 100% {
+    border-color: rgb(34, 193, 160);
+    box-shadow: 0 0 0 0 rgba(34, 193, 160, 0.3), inset 0 0 0 0 rgba(34, 193, 160, 0.1);
+  }
+  50% {
+    box-shadow: 0 0 0 2px rgba(34, 193, 160, 0.5), inset 0 0 0 2px rgba(34, 193, 160, 0.2);
+  }
+}
+
+@keyframes flowBorder7 {
+  0%, 100% {
+    border-color: rgb(8, 145, 178);
+    box-shadow: 0 0 0 0 rgba(8, 145, 178, 0.3), inset 0 0 0 0 rgba(8, 145, 178, 0.1);
+  }
+  50% {
+    box-shadow: 0 0 0 2px rgba(8, 145, 178, 0.5), inset 0 0 0 2px rgba(8, 145, 178, 0.2);
+  }
+}
+
+@keyframes flowBorder8 {
+  0%, 100% {
+    border-color: rgb(124, 58, 237);
+    box-shadow: 0 0 0 0 rgba(124, 58, 237, 0.3), inset 0 0 0 0 rgba(124, 58, 237, 0.1);
+  }
+  50% {
+    box-shadow: 0 0 0 2px rgba(124, 58, 237, 0.5), inset 0 0 0 2px rgba(124, 58, 237, 0.2);
   }
 }
 
@@ -1348,10 +1710,26 @@ textarea {
   }
 
   .process-list {
+    display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
+    aspect-ratio: auto;
+    width: auto;
+    max-width: 100%;
+    gap: 32px 24px;
   }
 
-  .process-list::before {
+  .process-list::before,
+  .process-list::after {
+    display: none;
+  }
+
+  .process-list li {
+    position: relative;
+    transform: none !important;
+    width: auto;
+  }
+
+  .process-list li::before {
     display: none;
   }
 
@@ -1411,6 +1789,34 @@ textarea {
   }
 }
 
+@media (max-width: 768px) {
+  .process-list {
+    gap: 8px;
+  }
+
+  .process-list li {
+    min-width: 130px;
+  }
+
+  .process-icon-wrap {
+    width: 78px;
+    height: 78px;
+  }
+
+  .process-icon {
+    width: 78px;
+    height: 78px;
+  }
+
+  .process-list h3 {
+    font-size: 0.88rem;
+  }
+
+  .process-list p {
+    font-size: 0.75rem;
+  }
+}
+
 @media (max-width: 520px) {
   .hero-actions .btn {
     width: 100%;
@@ -1425,7 +1831,34 @@ textarea {
   }
 
   .process-list {
+    display: grid;
     grid-template-columns: 1fr;
+    aspect-ratio: auto;
+    width: auto;
+    max-width: 100%;
+    gap: 12px;
+  }
+
+  .process-list::before,
+  .process-list::after {
+    display: none;
+  }
+
+  .process-list li {
+    position: relative;
+    transform: none !important;
+    width: auto;
+    min-width: auto;
+  }
+
+  .process-icon-wrap {
+    width: 72px;
+    height: 72px;
+  }
+
+  .process-icon {
+    width: 72px;
+    height: 72px;
   }
 
   .service-card-content {
