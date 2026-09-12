@@ -6,10 +6,18 @@ export const softwareServices = [
   { title: 'AI Automation', icon: 'Bot' },
   { title: 'Cloud Solutions', icon: 'CloudCog' },
   { title: 'API Development', icon: 'Webhook' },
-  { title: 'E-Commerce Development', icon: 'ShoppingCart' },
+  { 
+    title: 'E-Commerce Development', 
+    icon: 'ShoppingCart',
+    videoUrl: 'https://res.cloudinary.com/dlx9tnj7p/video/upload/v1789028646/Create_a_second_premium_cin_ho4wcc.mp4'
+  },
   { title: 'SaaS Development', icon: 'Cloud' },
   { title: 'UI/UX Design', icon: 'PenTool' },
-  { title: 'Software Maintenance', icon: 'Wrench' },
+  { 
+    title: 'Software Maintenance', 
+    icon: 'Wrench',
+    videoUrl: 'https://res.cloudinary.com/dlx9tnj7p/video/upload/v1789030247/VID-20260907-WA0001_l40gml.mp4'
+  },
   { title: 'Digital Transformation', icon: 'RefreshCw' },
 ]
 
@@ -20,9 +28,17 @@ export const electricalServices = [
   { title: 'Electrical Panels', icon: 'PanelTop' },
   { title: 'Repairs', icon: 'Wrench' },
   { title: 'Maintenance', icon: 'Settings' },
-  { title: 'Safety Inspection', icon: 'ShieldCheck' },
+  { 
+    title: 'Safety Inspection', 
+    icon: 'ShieldCheck',
+    videoUrl: 'https://res.cloudinary.com/dlx9tnj7p/video/upload/v1789030543/VID-20260907-WA0005_xdxoid.mp4'
+  },
   { title: 'Commercial Power Distribution', icon: 'Network' },
-  { title: 'Solar System Design', icon: 'Sun' },
+  { 
+    title: 'Solar System Design', 
+    icon: 'Sun',
+    videoUrl: 'https://res.cloudinary.com/dlx9tnj7p/video/upload/v1789030577/VID-20260907-WA0003_nxo7so.mp4'
+  },
   { title: 'EV Charger Installation', icon: 'BatteryCharging' },
   { title: 'Fault Detection', icon: 'SearchCheck' },
   { title: 'Energy Optimization', icon: 'Gauge' },
