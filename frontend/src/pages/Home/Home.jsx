@@ -130,7 +130,7 @@ export function Home() {
                 <li key={step.title}>
                   <div className="process-icon-wrap">
                     <span className={`process-icon ${meta.gradient}`}>
-                      <meta.icon size={20} />
+                      <meta.icon size={40} />
                     </span>
                     <span className="process-step-number">{index + 1}</span>
                   </div>
