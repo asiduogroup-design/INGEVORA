@@ -4,18 +4,42 @@ export const softwareServices = [
     icon: 'Code2', 
     videoUrl: 'https://res.cloudinary.com/dlx9tnj7p/video/upload/v1789191914/Create_a_premium_photorealisti_1_kkylbq.mp4' 
   },
-  { title: 'Mobile App Development', icon: 'Smartphone' },
-  { title: 'Custom Software', icon: 'Blocks' },
-  { title: 'AI Solutions', icon: 'BrainCircuit' },
-  { title: 'AI Automation', icon: 'Bot' },
-  { title: 'Cloud Solutions', icon: 'CloudCog' },
+  { 
+    title: 'Mobile App Development',
+     icon: 'Smartphone',
+     videoUrl: 'https://res.cloudinary.com/dlx9tnj7p/video/upload/v1789453016/Create_a_premium_photorealisti_2_ypjnsd.mp4'
+     },
+  { 
+    title: 'Custom Software', 
+    icon: 'Blocks',
+    videoUrl: 'https://res.cloudinary.com/dlx9tnj7p/video/upload/v1789453352/Create_a_premium_photorealisti_3_gb6tfy.mp4'
+   },
+  { 
+    title: 'AI Solutions',
+     icon: 'BrainCircuit',
+     videoUrl: 'https://res.cloudinary.com/dlx9tnj7p/video/upload/v1789453642/Create_a_premium_photorealisti_4_efraen.mp4'
+  },
+  { 
+    title: 'AI Automation', 
+    icon: 'Bot',
+    videoUrl: 'https://res.cloudinary.com/dlx9tnj7p/video/upload/v1789453976/Create_a_premium_photorealisti_5_aauftd.mp4'
+ },
+  { 
+    title: 'Cloud Solutions', 
+    icon: 'CloudCog',
+    videoUrl: 'https://res.cloudinary.com/dlx9tnj7p/video/upload/v1789454359/Create_a_premium_photorealisti_6_lokc0l.mp4'
+  },
   { title: 'API Development', icon: 'Webhook' },
   { 
     title: 'E-Commerce Development', 
     icon: 'ShoppingCart',
     videoUrl: 'https://res.cloudinary.com/dlx9tnj7p/video/upload/v1789028646/Create_a_second_premium_cin_ho4wcc.mp4'
   },
-  { title: 'SaaS Development', icon: 'Cloud' },
+  {
+     title: 'SaaS Development',
+      icon: 'Cloud',
+      videoUrl: 'https://res.cloudinary.com/dlx9tnj7p/video/upload/v1789454672/Create_a_premium_photorealisti_7_kmxzsg.mp4'
+ },
   { 
     title: 'UI/UX Design', 
     icon: 'PenTool',
