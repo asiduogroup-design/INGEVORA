@@ -19,6 +19,7 @@ import { LogoMark } from '../../components/branding/LogoMark'
 import { useLanguage } from '../../hooks/useLanguage'
 import { motion } from 'framer-motion'
 import { lazy, Suspense } from 'react'
+import { GlassBackground } from '../../components/visuals/GlassBackground'
 
 const EngineeringScene = lazy(() =>
   import('../../components/visuals/EngineeringScene').then((module) => ({
@@ -43,6 +44,9 @@ export function Home() {
   return (
     <main>
       <section className="hero-section">
+        <div className="hero-background">
+          <GlassBackground />
+        </div>
         <Container className="hero-grid">
           <motion.div className="hero-copy" initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.55 }}>
             <p className="eyebrow">INGEVORA</p>
