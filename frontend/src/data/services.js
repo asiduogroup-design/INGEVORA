@@ -29,7 +29,11 @@ export const softwareServices = [
     icon: 'CloudCog',
     videoUrl: 'https://res.cloudinary.com/dlx9tnj7p/video/upload/v1789454359/Create_a_premium_photorealisti_6_lokc0l.mp4'
   },
-  { title: 'API Development', icon: 'Webhook' },
+  {
+     title: 'API Development', 
+     icon: 'Webhook',
+     videoUrl: 'https://res.cloudinary.com/dlx9tnj7p/video/upload/v1789540542/Create_a_premium_photorealisti_8_wwljwr.mp4'
+     },
   { 
     title: 'E-Commerce Development', 
     icon: 'ShoppingCart',
@@ -50,12 +54,24 @@ export const softwareServices = [
     icon: 'Wrench',
     videoUrl: 'https://res.cloudinary.com/dlx9tnj7p/video/upload/v1789030247/VID-20260907-WA0001_l40gml.mp4'
   },
-  { title: 'Digital Transformation', icon: 'RefreshCw' },
+  { 
+    title: 'Digital Transformation', 
+    icon: 'RefreshCw',
+    videoUrl: 'https://res.cloudinary.com/dlx9tnj7p/video/upload/v1789541019/Create_a_premium_photorealisti_9_z6oam6.mp4'
+   },
 ]
 
 export const electricalServices = [
-  { title: 'House Wiring', icon: 'Cable' },
-  { title: 'Electrical Installation', icon: 'PlugZap' },
+  { 
+    title: 'House Wiring',
+     icon: 'Cable',
+     videoUrl: 'https://res.cloudinary.com/dlx9tnj7p/video/upload/v1789541430/Create_a_premium_photorealisti_10_xwaftx.mp4'
+     },
+  {
+     title: 'Electrical Installation',
+      icon: 'PlugZap',
+      videoUrl: 'https://res.cloudinary.com/dlx9tnj7p/video/upload/v1789541838/Create_a_premium_photorealisti_11_cugk3i.mp4'
+     },
   { title: 'Lighting', icon: 'Lightbulb' },
   { title: 'Electrical Panels', icon: 'PanelTop' },
   { title: 'Repairs', icon: 'Wrench' },
