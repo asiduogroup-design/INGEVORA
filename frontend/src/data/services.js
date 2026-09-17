@@ -72,9 +72,21 @@ export const electricalServices = [
       icon: 'PlugZap',
       videoUrl: 'https://res.cloudinary.com/dlx9tnj7p/video/upload/v1789541838/Create_a_premium_photorealisti_11_cugk3i.mp4'
      },
-  { title: 'Lighting', icon: 'Lightbulb' },
-  { title: 'Electrical Panels', icon: 'PanelTop' },
-  { title: 'Repairs', icon: 'Wrench' },
+  { 
+    title: 'Lighting',
+     icon: 'Lightbulb',
+     videoUrl: 'https://res.cloudinary.com/dlx9tnj7p/video/upload/v1789631228/in_above_video_why_car_is_show_mmqigx.mp4'
+     },
+  { 
+    title: 'Electrical Panels',
+     icon: 'PanelTop',
+     videoUrl: 'https://res.cloudinary.com/dlx9tnj7p/video/upload/v1789631582/Create_a_premium_photorealisti_13_fq0fiz.mp4'
+     },
+  { 
+    title: 'Repairs', 
+    icon: 'Wrench',
+    videoUrl: 'https://res.cloudinary.com/dlx9tnj7p/video/upload/v1789631908/Create_a_premium_photorealisti_14_s2swnd.mp4' 
+},
   { title: 'Maintenance', icon: 'Settings' },
   { 
     title: 'Safety Inspection', 
@@ -87,7 +99,11 @@ export const electricalServices = [
     icon: 'Sun',
     videoUrl: 'https://res.cloudinary.com/dlx9tnj7p/video/upload/v1789030577/VID-20260907-WA0003_nxo7so.mp4'
   },
-  { title: 'EV Charger Installation', icon: 'BatteryCharging' },
+  { 
+    title: 'EV Charger Installation',
+     icon: 'BatteryCharging',
+     videoUrl: 'https://res.cloudinary.com/dlx9tnj7p/video/upload/v1789630595/Create_a_premium_photorealisti_12_j1hihr.mp4'
+     },
   { title: 'Fault Detection', icon: 'SearchCheck' },
   { title: 'Energy Optimization', icon: 'Gauge' },
 ]

@@ -3,12 +3,14 @@ import { Float, Html, Line, Sphere } from '@react-three/drei'
 import { Suspense, useRef } from 'react'
 import './EngineeringScene.css'
 
-// Maps node index -> tagline word, so "Software • Engineering • Automation"
-// rides along the three most spread-out connection points.
+// Maps node index -> tagline word, so "Software • Engineering • Automation • AI & Innovation • Electrical"
+// rides along the five connection points.
 const NODE_LABELS = {
   0: 'Software',
   1: 'Engineering',
   2: 'Automation',
+  3: 'AI & Innovation',
+  4: 'Electrical',
 }
 
 function Core() {
