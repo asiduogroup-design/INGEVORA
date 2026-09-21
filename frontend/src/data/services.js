@@ -87,13 +87,22 @@ export const electricalServices = [
     icon: 'Wrench',
     videoUrl: 'https://res.cloudinary.com/dlx9tnj7p/video/upload/v1789631908/Create_a_premium_photorealisti_14_s2swnd.mp4' 
 },
-  { title: 'Maintenance', icon: 'Settings' },
+  { 
+    title: 'Maintenance',
+     icon: 'Settings' ,
+     videoUrl: 'https://res.cloudinary.com/dlx9tnj7p/video/upload/v1789979444/gemini_generated_video_7e31a62e_is7hov.mp4'
+    },
   { 
     title: 'Safety Inspection', 
     icon: 'ShieldCheck',
     videoUrl: 'https://res.cloudinary.com/dlx9tnj7p/video/upload/v1789030543/VID-20260907-WA0005_xdxoid.mp4'
   },
-  { title: 'Commercial Power Distribution', icon: 'Network' },
+  { 
+    title: 'Commercial Power Distribution',
+     icon: 'Network',
+     videoUrl: 'https://res.cloudinary.com/dlx9tnj7p/video/upload/v1789979844/gemini_generated_video_4267e0e8_ltnegn.mp4',
+
+     },
   { 
     title: 'Solar System Design', 
     icon: 'Sun',
@@ -104,7 +113,11 @@ export const electricalServices = [
      icon: 'BatteryCharging',
      videoUrl: 'https://res.cloudinary.com/dlx9tnj7p/video/upload/v1789630595/Create_a_premium_photorealisti_12_j1hihr.mp4'
      },
-  { title: 'Fault Detection', icon: 'SearchCheck' },
+  { 
+    title: 'Fault Detection',
+     icon: 'SearchCheck',
+     videoUrl: 'https://res.cloudinary.com/dlx9tnj7p/video/upload/v1789980388/gemini_generated_video_aaa65d6d_tlj060.mp4'
+     },
   { title: 'Energy Optimization', icon: 'Gauge' },
 ]
 
