@@ -2,7 +2,7 @@
 
 .page-wrapper {
   position: relative;
-  overflow: hidden;
+  overflow: clip;
 }
 
 .page-background {
