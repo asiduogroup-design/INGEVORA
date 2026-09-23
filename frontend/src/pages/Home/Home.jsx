@@ -1,14 +1,8 @@
 import {
   ArrowRight,
-  Code2,
   Cpu,
-  Palette,
-  Rocket,
-  Search,
   ShieldCheck,
   Sparkles,
-  Target,
-  Users,
   Wrench,
   Zap,
 } from 'lucide-react'
@@ -20,23 +14,13 @@ import { useLanguage } from '../../hooks/useLanguage'
 import { motion } from 'framer-motion'
 import { lazy, Suspense } from 'react'
 import { GlassBackground } from '../../components/visuals/GlassBackground'
+import { DevelopmentLifecycle } from '../../components/process/DevelopmentLifecycle'
 
 const EngineeringScene = lazy(() =>
   import('../../components/visuals/EngineeringScene').then((module) => ({
     default: module.EngineeringScene,
   })),
 )
-
-const processMeta = [
-  { icon: Users, gradient: 'grad-blue' },
-  { icon: Search, gradient: 'grad-cyan' },
-  { icon: Target, gradient: 'grad-purple' },
-  { icon: Palette, gradient: 'grad-pink' },
-  { icon: Code2, gradient: 'grad-indigo' },
-  { icon: ShieldCheck, gradient: 'grad-green' },
-  { icon: Rocket, gradient: 'grad-cyan2' },
-  { icon: Wrench, gradient: 'grad-violet' },
-]
 
 export function Home() {
   const { t } = useLanguage()
@@ -120,30 +104,14 @@ export function Home() {
         </Container>
       </section>
 
-      <section className="section">
+      <section className="section process-section">
         <Container>
           <div className="process-heading">
             <span className="ai-pill"><Wrench size={14} /> {t.home.howWeWork}</span>
             <h2>{t.home.processTitle}</h2>
             <p>{t.home.processText}</p>
           </div>
-          <ol className="process-list">
-            {t.home.process.map((step, index) => {
-              const meta = processMeta[index]
-              return (
-                <li key={step.title}>
-                  <div className="process-icon-wrap">
-                    <span className={`process-icon ${meta.gradient}`}>
-                      <meta.icon size={40} />
-                    </span>
-                    <span className="process-step-number">{index + 1}</span>
-                  </div>
-                  <h3>{step.title}</h3>
-                  <p>{step.text}</p>
-                </li>
-              )
-            })}
-          </ol>
+          <DevelopmentLifecycle />
         </Container>
       </section>
 

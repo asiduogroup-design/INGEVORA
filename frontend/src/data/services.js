@@ -118,7 +118,11 @@ export const electricalServices = [
      icon: 'SearchCheck',
      videoUrl: 'https://res.cloudinary.com/dlx9tnj7p/video/upload/v1789980388/gemini_generated_video_aaa65d6d_tlj060.mp4'
      },
-  { title: 'Energy Optimization', icon: 'Gauge' },
+  { 
+  title: 'Energy Optimization',
+   icon: 'Gauge',
+   videoUrl: 'https://res.cloudinary.com/dlx9tnj7p/video/upload/v1790149976/gemini_generated_video_b9e98c8d_fmd09q.mp4'
+   },
 ]
 
 export const allServices = [
